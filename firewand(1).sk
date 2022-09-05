@@ -1,0 +1,27 @@
+command /firewand:
+	permission: firewand.get
+	permission message: "&4You can't do that!"
+	trigger:
+		give player blaze rod named "&4Fire&cwand"
+		
+		
+		
+		
+on right click:
+	if player's held item is blaze rod with name "&4Fire&cwand":
+		cancel event
+		if {cooldown::%player%} is false:
+			set {_z} to player's targeted block
+			spawn fireball 2 blocks above player's location
+			push last spawned entity in direction of {_z} at speed 3
+
+					
+		else:
+			send "&4Wait for the cooldown"
+		
+on right click:
+	if player's held item is blaze rod with name "&4Fire&cwand":
+		cancel event
+		set {cooldown::%player%} to true
+		wait 5 seconds
+		set {cooldown::%player%} to false
